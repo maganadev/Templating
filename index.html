@@ -1,3 +1,80 @@
 <html>
-hello world
+
+<head>
+    <script>
+        function templateOut() {
+            alert(1);
+        }
+    </script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #template_box {
+            height: 25%;
+            background-color: #3E3E3E;
+            border: 1px solid #3E3E3E;
+        }
+
+        #find_box {
+            height: 10%;
+            background-color: #3E3E3E;
+            border: 1px solid #3E3E3E;
+        }
+
+        #replace_box {
+            height: 25%;
+            background-color: #3E3E3E;
+            border: 1px solid #3E3E3E;
+        }
+
+        #output_box {
+            height: 30%;
+            background-color: #3E3E3E;
+            border: 1px solid #3E3E3E;
+        }
+
+        #button_box {
+            height: 10%;
+            background-color: #3E3E3E;
+            border: 1px solid #3E3E3E;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            border: none;
+            outline: none;
+        }
+
+        #templateOutButton {
+            width: 20%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="template_box"><textarea id="template_box_text" placeholder="template"></textarea></div>
+        <div id="find_box"><textarea id="find_box_text" placeholder="find"></textarea></div>
+        <div id="replace_box"><textarea id="replace_box_text" placeholder="replace"></textarea></div>
+        <div id="output_box"><textarea id="output_box_text" placeholder="output"></textarea></div>
+        <div id="button_box"><button id="templateOutButton" type="button" onclick="templateOut();">Click Me!</button></div>
+
+    </div>
+</body>
+
 </html>
