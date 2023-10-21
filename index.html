@@ -1,80 +1,107 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <script>
+            function templateOut() {
+                let seperator = "||||";
 
-<head>
-    <script>
-        function templateOut() {
-            alert(1);
-        }
-    </script>
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+                let template_box_text = document.getElementById("template_box_text").value.replaceAll("\r", "");
+                let find_box_text = document.getElementById("find_box_text").value.replaceAll("\r", "");
+                let replace_box_text = document.getElementById("replace_box_text").value.replaceAll("\r", "");
 
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+                //Do Splitting
+                let findWords = find_box_text.split(seperator);
+                let replaceArray = [];
+                for (let replaceLine of replace_box_text.split("\n")) {
+                    if (replaceLine.length == 0) {
+                        continue;
+                    }
+                    let replaceWords = replaceLine.split(seperator);
+                    if (replaceWords.length != findWords.length) {
+                        alert("The amount of tokens in find and replace do not match");
+                        return;
+                    }
+                    replaceArray.push(replaceWords);
+                }
 
-        #template_box {
-            height: 25%;
-            background-color: #3E3E3E;
-            border: 1px solid #3E3E3E;
-        }
+                //Set output
+                let output_box_text = "";
+                for (let replaceWords of replaceArray) {
+                    let temp = template_box_text;
+                    for (let i = 0; i < replaceWords.length; i++) {
+                        temp = temp.replaceAll(findWords[i], replaceWords[i]);
+                    }
+                    output_box_text += temp + "\n";
+                }
+                document.getElementById("output_box_text").value = output_box_text;
+            }
+        </script>
+        <style>
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
 
-        #find_box {
-            height: 10%;
-            background-color: #3E3E3E;
-            border: 1px solid #3E3E3E;
-        }
+            .container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
 
-        #replace_box {
-            height: 25%;
-            background-color: #3E3E3E;
-            border: 1px solid #3E3E3E;
-        }
+            #template_box {
+                height: 25%;
+                background-color: #3e3e3e;
+                border: 1px solid #3e3e3e;
+            }
 
-        #output_box {
-            height: 30%;
-            background-color: #3E3E3E;
-            border: 1px solid #3E3E3E;
-        }
+            #find_box {
+                height: 10%;
+                background-color: #3e3e3e;
+                border: 1px solid #3e3e3e;
+            }
 
-        #button_box {
-            height: 10%;
-            background-color: #3E3E3E;
-            border: 1px solid #3E3E3E;
-        }
+            #replace_box {
+                height: 25%;
+                background-color: #3e3e3e;
+                border: 1px solid #3e3e3e;
+            }
 
-        textarea {
-            width: 100%;
-            height: 100%;
-            resize: none;
-            border: none;
-            outline: none;
-        }
+            #output_box {
+                height: 30%;
+                background-color: #3e3e3e;
+                border: 1px solid #3e3e3e;
+            }
 
-        #templateOutButton {
-            width: 20%;
-            height: 100%;
-        }
-    </style>
-</head>
+            #button_box {
+                height: 10%;
+                background-color: #3e3e3e;
+                border: 1px solid #3e3e3e;
+            }
 
-<body>
-    <div class="container">
-        <div id="template_box"><textarea id="template_box_text" placeholder="template"></textarea></div>
-        <div id="find_box"><textarea id="find_box_text" placeholder="find"></textarea></div>
-        <div id="replace_box"><textarea id="replace_box_text" placeholder="replace"></textarea></div>
-        <div id="output_box"><textarea id="output_box_text" placeholder="output"></textarea></div>
-        <div id="button_box"><button id="templateOutButton" type="button" onclick="templateOut();">Click Me!</button></div>
+            textarea {
+                width: 100%;
+                height: 100%;
+                resize: none;
+                border: none;
+                outline: none;
+            }
 
-    </div>
-</body>
-
+            #templateOutButton {
+                width: 20%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="template_box"><textarea id="template_box_text" placeholder="template"></textarea></div>
+            <div id="find_box"><textarea id="find_box_text" placeholder="find"></textarea></div>
+            <div id="replace_box"><textarea id="replace_box_text" placeholder="replace"></textarea></div>
+            <div id="output_box"><textarea id="output_box_text" placeholder="output"></textarea></div>
+            <div id="button_box"><button id="templateOutButton" type="button" onclick="templateOut();">Click Me!</button></div>
+        </div>
+    </body>
 </html>
